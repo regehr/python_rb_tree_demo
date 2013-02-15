@@ -10,6 +10,8 @@
 #   a software project, may be used freely without reference to the
 #   author.
 #
+# Hacked by John Regehr <regehr@cs.utah.edu>
+#
 # Adapted by Chris Gonnerman <chris.gonnerman@newcenturycomputers.net>
 #        and Graham Breed
 #
@@ -36,6 +38,11 @@
 #                                 is deleted.  all is True by default.
 #        changed RBTree.deleteNode : same changes as for RBList.remove()
 #        finally I've changed the __version__ string to '1.6'
+#
+# the original version of this file can be downloaded from here:
+#
+# http://newcenturycomputers.net/projects/rbtree.html
+#
 
 __version__ = "1.6"
 
