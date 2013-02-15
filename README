@@ -1,3 +1,11 @@
+-------------------------------------------------------------------------------
+
+This README and the Python code in this directory are derived from
+code found here:
+
+http://newcenturycomputers.net/projects/rbtree.html
+
+-------------------------------------------------------------------------------
 RBTree.py -- Red/Black Balanced Binary Trees with Dictionary Interface
 
 Introduction:
