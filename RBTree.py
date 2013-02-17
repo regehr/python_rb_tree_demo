@@ -758,6 +758,34 @@ class RBDict(RBTree):
         self[key] = value
         return value
 
+l = []
+
+def findnew():
+    import random
+    found = 0
+    x = -1
+    while found == 1:
+        x = random.randrange (10000)
+        print "x is " + str(x)
+        found = 1
+        try: 
+            i = l.index(x)
+            print str(x) + " was found in l[] at " + str(i)
+        except ValueError:
+            found = 0
+            print str(x) + " was not found in l[]"
+    return x
+        
+def fuzzRBlist():
+    import random
+    rblist = RBList([])
+    for i in range(100):
+        n = findnew ()
+        print "adding " + str(n) 
+        rblist.insert (n)
+        l.append(n)
+        assert l == rblist.values()
+
 
 """ ----------------------------------------------------------------------------
     TEST ROUTINES
@@ -815,10 +843,11 @@ def testRBlist():
     while n is not None:
         print "(" + str(n) + ")",
         n = rbList.prevNode (n)
-
     if rbList.nodes() != rbList.nodesByTraversal():
         print "node lists don't match"
     print
+    print "hello!"
+    fuzzRBlist()
 
 def testRBdict():
     import random
