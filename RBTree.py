@@ -762,19 +762,15 @@ l = []
 
 def findnew():
     import random
-    found = 0
-    x = -1
-    while found == 1:
+    while True:
         x = random.randrange (10000)
         print "x is " + str(x)
-        found = 1
         try: 
             i = l.index(x)
             print str(x) + " was found in l[] at " + str(i)
         except ValueError:
-            found = 0
             print str(x) + " was not found in l[]"
-    return x
+            return x
         
 def fuzzRBlist():
     import random
@@ -784,6 +780,11 @@ def fuzzRBlist():
         print "adding " + str(n) 
         rblist.insert (n)
         l.append(n)
+        l.sort()
+        print "l is:"
+        print l
+        print "rblist.values() is:"
+        print rblist.values()
         assert l == rblist.values()
 
 
