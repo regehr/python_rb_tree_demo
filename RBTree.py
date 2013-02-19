@@ -47,6 +47,7 @@
 __version__ = "1.6"
 
 import string
+import random
 
 BLACK = 0
 RED = 1
@@ -761,30 +762,35 @@ class RBDict(RBTree):
 l = []
 
 def findnew():
-    import random
     while True:
-        x = random.randrange (10000)
-        print "x is " + str(x)
+        x = random.randrange (100000)
         try: 
             i = l.index(x)
-            print str(x) + " was found in l[] at " + str(i)
         except ValueError:
-            print str(x) + " was not found in l[]"
             return x
+
+rblist = RBList([])
+
+def add():
+    n = findnew ()
+    rblist.insert (n)
+    l.append(n)
+    l.sort()
+
+def remove():
+    if len(l) == 0:
+        return
+    n = random.randrange(len(l))
+    x = l[n]
+    rblist.remove(x)
+    l.remove(x)
         
 def fuzzRBlist():
-    import random
-    rblist = RBList([])
-    for i in range(100):
-        n = findnew ()
-        print "adding " + str(n) 
-        rblist.insert (n)
-        l.append(n)
-        l.sort()
-        print "l is:"
-        print l
-        print "rblist.values() is:"
-        print rblist.values()
+    for i in range(10000):
+        if random.random() < 0.5:
+            add()
+        else:
+            remove()
         assert l == rblist.values()
 
 
@@ -792,7 +798,6 @@ def fuzzRBlist():
     TEST ROUTINES
 """
 def testRBlist():
-    import random
     print "--- Testing RBList ---"
     print "    Basic tests..."
 
@@ -846,12 +851,8 @@ def testRBlist():
         n = rbList.prevNode (n)
     if rbList.nodes() != rbList.nodesByTraversal():
         print "node lists don't match"
-    print
-    print "hello!"
-    fuzzRBlist()
 
 def testRBdict():
-    import random
     print "--- Testing RBDict ---"
 
     rbDict = RBDict()
@@ -884,8 +885,9 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) <= 1:
-        testRBlist()
-        testRBdict()
+        fuzzRBlist()
+        #testRBlist()
+        #testRBdict()
     else:
 
         from distutils.core import setup, Extension
